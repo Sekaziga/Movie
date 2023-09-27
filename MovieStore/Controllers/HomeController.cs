@@ -1,21 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MovieStore.Models;
+﻿using MovieStore.Models;
+using MovieStore.Services;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+
 
 namespace MovieStore.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMovieService _movieService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+              IMovieService movieService
+              )
         {
             _logger = logger;
+            _movieService = movieService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var movieList = _movieService.GetMovies();
+            return View(movieList);
         }
 
         public IActionResult Privacy()

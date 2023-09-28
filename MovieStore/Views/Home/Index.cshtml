@@ -4,7 +4,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to Movie Shop</h1>
+    <h1 class="display-4">Welcome to Movie Store</h1>
 
 </div>
 
@@ -18,7 +18,8 @@
                 <h5 class="card-title">@item.Director</h5>
                 <p class="card-text">@item.Description</p>
                 <h3>Price SEK @item.Price</h3>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+               @* <a href="#" class="btn btn-primary">Go somewhere</a>*@
+                <button class="btn btn-primary" onclick="addToCart(@item.Id)">Add to cart</button>
             </div>
         </div>
     }

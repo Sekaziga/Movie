@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MovieStore.Models.Movie>
+﻿@model MovieStore.Models.ViewModels.FrontPageVM
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -8,7 +8,21 @@
 
 </div>
 
-<div class="row">
+
+ <h4 class="m-5 text-center"> Our BestSeller Movies 👌 </h4>
+        <partial name="_movieListPartial" model="@Model.Top5Movies"/>
+
+        <h4 class="m-5 text-center"> Our cheapest Movies 👌 </h4>
+<partial name="_movieListPartial" model="@Model.Top5CheapestMovies" />
+
+        <h4 class="m-5 text-center"> Our New Movies 👌 </h4>
+<partial name="_movieListPartial" model="@Model.Top5NewestMovies"/>
+
+        <h4 class="m-5 text-center"> Our Oldest Movies 👌 </h4>
+<partial name="_movieListPartial" model="@Model.Top5OldestMovies" />
+
+
+@*<div class="row">
     @foreach (var item in Model)
     {
         <div class="card col-md-4">
@@ -19,8 +33,11 @@
                 <p class="card-text">@item.Description</p>
                 <h3>Price SEK @item.Price</h3>
                @* <a href="#" class="btn btn-primary">Go somewhere</a>*@
-                <button class="btn btn-primary" onclick="addToCart(@item.Id)">Add to cart</button>
+@*<button class="btn btn-primary" onclick="addToCart(@item.Id)">Add to cart</button>
             </div>
         </div>
     }
-</div>
+</div>*@
+
+
+

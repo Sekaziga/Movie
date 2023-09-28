@@ -94,7 +94,8 @@ namespace MovieStore.Migrations
 
                     b.Property<string>("ImgURL")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");

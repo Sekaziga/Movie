@@ -1,6 +1,6 @@
 ﻿using MovieStore.Models;
 
-namespace MovieStore.Services
+namespace MovieStore.Services.Abstract
 {
     public interface IMovieService
     {

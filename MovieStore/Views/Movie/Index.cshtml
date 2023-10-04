@@ -4,7 +4,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">You added a Movie to Movie Store</h1>
+    <h1 class="display-4"><strong>Welcome to Movie Store </strong></h1>
 
 </div>
 
@@ -14,14 +14,18 @@
         <div class="card col-md-4">
             <img src="~/images/@item.ImgURL" class="card-img-top" alt="...">
             <div class="card-body">
+                <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.Id">
                 <h5 class="card-title">@item.Title</h5>
                 <h5 class="card-title">@item.Director</h5>
                 <p class="card-text">@item.Description</p>
                 <h3>Price SEK @item.Price</h3>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+                </a>
+             </div>
+             
+             <div>
+                 <button class="btn btn-primary md-2" onclick="addToCart(@item.Id)">Add to cart</button>
+
         </div>
-        
-       
+        </div>       
     }
 </div>

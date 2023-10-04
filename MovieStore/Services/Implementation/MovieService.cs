@@ -1,7 +1,8 @@
 ﻿using MovieStore.Data;
 using MovieStore.Models;
+using MovieStore.Services.Abstract;
 
-namespace MovieStore.Services
+namespace MovieStore.Services.Implementation
 {
     public class MovieService : IMovieService
     {
@@ -36,17 +37,7 @@ namespace MovieStore.Services
             _db.SaveChanges();
         }
 
-        //public Movie GetMovieById(int id)
-        //{
-        //    var movie = _db.Movies.Find(id);
 
-        //    if (movie == null)
-        //    {
-        //        throw new Exception("Movie not found");
-        //    }
-
-        //    return movie;
-        //}
 
     }
 }

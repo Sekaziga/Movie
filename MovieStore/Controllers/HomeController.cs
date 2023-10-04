@@ -1,8 +1,8 @@
 ﻿using MovieStore.Models;
-using MovieStore.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using MovieStore.Models.ViewModels;
+using MovieStore.Services.Abstract;
 
 namespace MovieStore.Controllers
 {
@@ -25,7 +25,7 @@ namespace MovieStore.Controllers
 
             FrontPageVM frontPage = new FrontPageVM();
             frontPage.Top5Movies = movieList
-                .OrderBy(m => m.Price).Take(5)
+                .OrderByDescending(m => m.ReleaseYear).Take(5)
                 .ToList();
 
             frontPage.Top5OldestMovies = movieList

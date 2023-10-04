@@ -1,7 +1,8 @@
 ﻿using MovieStore.Data;
 using MovieStore.Models;
+using MovieStore.Services.Abstract;
 
-namespace MovieStore.Services
+namespace MovieStore.Services.Implementation
 {
     public class CustomerService : ICustomerService
     {

@@ -35,6 +35,6 @@ namespace MovieStore.Models
 
 
         public virtual ICollection<OrderRow> OrderRows { get; set; }
-
+       
     }
 }

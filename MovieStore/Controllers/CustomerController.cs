@@ -1,6 +1,6 @@
 ﻿using MovieStore.Models;
-using MovieStore.Services;
 using Microsoft.AspNetCore.Mvc;
+using MovieStore.Services.Abstract;
 
 namespace MovieStore.Controllers
 {

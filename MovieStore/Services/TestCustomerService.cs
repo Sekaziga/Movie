@@ -1,4 +1,5 @@
 ﻿using MovieStore.Models;
+using MovieStore.Services.Abstract;
 
 namespace MovieStore.Services
 {

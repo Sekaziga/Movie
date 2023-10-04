@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MovieStore.Data;
-using MovieStore.Services;
-
+using MovieStore.Services.Abstract;
+using MovieStore.Services.Implementation;
 
 namespace MovieStore
 {
@@ -13,6 +13,7 @@ namespace MovieStore
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             // Add services to the container.
+            builder.Services.AddSession();
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(
                 o => o
@@ -32,6 +33,7 @@ namespace MovieStore
             app.UseExceptionHandler("/Home/Error");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

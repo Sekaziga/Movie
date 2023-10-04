@@ -1,0 +1,42 @@
+﻿@model MovieStore.Models.ViewModels.CartVM
+
+Layout= "_Layout"
+
+    <div class="shopping-cart">
+        <h2>Shopping Cart</h2>
+
+        <div class="cart-item">
+            <div class="item-details">
+            <h5 class="card-title">Title</h5>
+            <h5 class="card-title">Director</h5>
+            <p class="card-text">Description</p>
+            <h3>Price SEK Price</h3>
+            </div>
+            <div class="item-image">
+                <img src="movie1.jpg" alt="Movie 1">
+            </div>
+        </div>
+
+        <div class="cart-item">
+            <div class="item-details">
+                <h3>Movie Title 2</h3>
+                <p>Director: Director Name 2</p>
+                <p>Price: $14.99</p>
+                <p>Quantity: 2</p>
+            </div>
+            <div class="item-image">
+                <img src="movie2.jpg" alt="Movie 2">
+            </div>
+        </div>
+
+        <div class="cart-total">
+            <p>Total: $39.97</p>
+        </div>
+
+        <a href="/checkout" class="checkout-button">Checkout</a>
+    </div>
+  
+
+
+
+

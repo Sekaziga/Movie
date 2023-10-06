@@ -1,10 +1,14 @@
 ﻿using MovieStore.Models;
+using System.Collections.Generic;
 
 namespace MovieStore.Services.Abstract
 {
     public interface IOrderService
     {
         List<Order> GetOrders();
+
+        List<Movie> GetmostSoldMovies();
+        List<Movie> GetCartVM(List<int> movieIdList);
 
 
 

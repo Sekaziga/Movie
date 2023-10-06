@@ -8,9 +8,9 @@ namespace MovieStore.Controllers
 {
     public class OrderController : Controller
     {
-        public OrderController ()
+        public OrderController()
         {
-            
+
         }
         public IActionResult Index()
         {
@@ -20,9 +20,9 @@ namespace MovieStore.Controllers
         [HttpPost]
         public IActionResult AddTocart(string id)
         {
-            if (HttpContext.Session.Get<List<int>>("movieIdlist")== default)
+            if (HttpContext.Session.Get<List<int>>("movieIdlist") == default)
             {
-                HttpContext.Session.Set<List<int>>("movieIdlist", new List< int > ());
+                HttpContext.Session.Set<List<int>>("movieIdlist", new List<int>());
             }
             var movieIdList = HttpContext.Session.Get<List<int>>("movieIdlist");
             movieIdList.Add(Convert.ToInt32(id));
@@ -32,25 +32,25 @@ namespace MovieStore.Controllers
 
             return Json(movieIdList.Count);
         }
-        public IActionResult ShoppingCart() 
+        public IActionResult ShoppingCart()
         {
             var cart = new CartVM();
             CartMovieVM newCartMovie = new CartMovieVM();
             newCartMovie.Movie = new Movie()/* { Tittle = "First tittle" }*/;
             newCartMovie.NoOfCopies = 2;
             newCartMovie.SubTotal = 200;
-            
-            
 
-            CartMovieVM newCartMovie2 = new CartMovieVM();
-            newCartMovie2.Movie = new Movie() /*{ Tittle = "Second tittle" }*/;
-            newCartMovie2.NoOfCopies = 2;
-            newCartMovie2.SubTotal = 200;
 
-            cart.Movie.Add(newCartMovie);
-            cart.Movie.Add(newCartMovie2);
 
-            cart.Total = 800;
+            //CartMovieVM newCartMovie2 = new CartMovieVM();
+            //newCartMovie2.Movie = new Movie() /*{ Tittle = "Second tittle" }*/;
+            //newCartMovie2.NoOfCopies = 2;
+            //newCartMovie2.SubTotal = 200;
+
+            //cart.Movie.Add(newCartMovie);
+            //cart.Movie.Add(newCartMovie2);
+
+            //cart.Total = 800;
 
             return View();
         }

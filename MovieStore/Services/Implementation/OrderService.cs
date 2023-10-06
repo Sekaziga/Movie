@@ -2,6 +2,9 @@
 using MovieStore.Models;
 using MovieStore.Models.ViewModels;
 using MovieStore.Services.Abstract;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MovieStore.Services.Implementation
 {
@@ -12,19 +15,11 @@ namespace MovieStore.Services.Implementation
 
 
         public OrderService(AppDbContext db)
-
-
-
         {
             _db = db;
-
-
-
         }
 
 
-
-        List<Order> Orders { get; set; } = new List<Order>();
 
 
 
@@ -66,7 +61,7 @@ namespace MovieStore.Services.Implementation
 
 
 
-            catch (Exception ex)
+            catch (Exception )
             {
                 return false;
             }
@@ -90,7 +85,7 @@ namespace MovieStore.Services.Implementation
 
 
 
-            catch (Exception ex)
+            catch (Exception )
             {
                 return false;
             }
@@ -105,11 +100,45 @@ namespace MovieStore.Services.Implementation
 
 
 
-        public CartVM GetCartVM()
+        public CartVM GetCartVM(List<int> movieIdList)
         {
-            //var query=_db.Movies.Where
-            var cartVM = new CartVM();
+            var uniqueMovies = _db.Movies
+                    .Where(m => movieIdList
+                    .Any(i => i == m.Id));
+
+
+
+            var cartMovies = movieIdList.GroupBy(x => x)
+                    .Select(g => new CartMovieVM()
+                    {
+                        Movie = uniqueMovies.Where(m => m.Id == g.Key).FirstOrDefault(),
+                        SubTotal = g.Count() * uniqueMovies
+                    .Where(m => m.Id == g.Key)
+                    .FirstOrDefault().Price
+
+                    }).ToList();
+
+
+
+
+
+
+            CartVM cartVM = new CartVM();
+            cartVM.CartMovies = cartMovies;
+            cartVM.Total = cartMovies.Sum(cm => cm.SubTotal);
+
             return cartVM;
+
+        }
+
+        public List<Movie> GetmostSoldMovies()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Movie> IOrderService.GetCartVM(List<int> movieIdList)
+        {
+            throw new NotImplementedException();
         }
     }
 }

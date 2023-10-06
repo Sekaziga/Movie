@@ -23,30 +23,29 @@
                 </a>
             </div>
 
-            <button class="btn btn-primary md-2" onclick="addToCart(@item.Id)">Add to cart</button>
+            <button class="btn btn-primary md-2" onclick="Add(@item.Id)">Add to cart</button>
     
         </div>
 
     }
 </div>
 <script>
-    function AddToCart(MovieId){
+    function Add(MovieId) {
         $.ajax({
             type: `post`,
             url: `Order/AddToCart`,
             dataType: `json`,
-            data: {id:MovieId},
-            success: function (count){
-                $(`#cartCount`).html(Count);
+            data: { id: MovieId },
+            success: function (count) {
+                $(`#cartCount`).html(count);
+                showCart();
             }
+        })
+
+        function showCart() {
+            var cartEle = document.getElementById("cartDiv");
+            cartEle.classList.remove("notShowCart");
+            cartEle.classList.add("showCart");
         }
-
-        )
-    }
-
-    function showCart(){
-        var cartEle = document.getElementById("cartDiv");
-        cartEle.classList.remove("notShowCart");
-
     }
 </script>

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieStore.Helpers;
 using MovieStore.Models;
 using MovieStore.Models.ViewModels;
 using MovieStore.Services.Abstract;
+using MovieStore.Services.Implementation;
 
 namespace MovieStore.Controllers
 {
@@ -33,7 +35,7 @@ namespace MovieStore.Controllers
             _movieService.CreateMovie(newMovie);
             return RedirectToAction("Index");
         }
-        
+
     }
 
 }

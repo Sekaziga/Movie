@@ -1,26 +1,25 @@
-﻿@model IEnumerable<MovieStore.Models.Movie>
+﻿@model MovieStore.Models.ViewModels.FrontPageVM
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to Movie Store</h1>
-
+    <h1 style="font-size: 30px; font-weight: bold; font-style: italic;">Welcome to Movie Store</h1>
+   @* <h1 class="display-4">Welcome to Movie Store</h1>
+*@
 </div>
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="card col-md-4">
-            <img src="~/images/@item.ImgURL" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">@item.Title</h5>
-                <h5 class="card-title">@item.Director</h5>
-                <p class="card-text">@item.Description</p>
-                <h3>Price SEK @item.Price</h3>
-               @* <a href="#" class="btn btn-primary">Go somewhere</a>*@
-                <button class="btn btn-primary" onclick="addToCart(@item.Id)">Add to cart</button>
-            </div>
-        </div>
-    }
+ <h4 class="m-5 text-center"> BestSeller Movies 👌 </h4>
+        <partial name="_movieListPartial" model="@Model.Top5Movies"/>
+
+        <h4 class="m-5 text-center"> Cheapest Movies 👌 </h4>
+<partial name="_movieListPartial" model="@Model.Top5CheapestMovies" />
+        <h4 class="m-5 text-center"> New Movies 👌 </h4>
+<partial name="_movieListPartial" model="@Model.Top5NewestMovies"/>
+        <h4 class="m-5 text-center"> Oldest Movies 👌 </h4>
+<partial name="_movieListPartial" model="@Model.Top5OldestMovies" />
+<div class="centered">
 </div>
+
+
+

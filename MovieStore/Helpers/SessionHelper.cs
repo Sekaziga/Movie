@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 
 namespace MovieStore.Helpers
+
 {
     public static class SessionHelper
     {
@@ -14,4 +15,6 @@ namespace MovieStore.Helpers
             return Value == null ? default : JsonConvert.DeserializeObject<T>(Value);
         }
     }
+
+    
 }

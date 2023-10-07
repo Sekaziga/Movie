@@ -14,6 +14,7 @@ namespace MovieStore
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSession();
             builder.Services.AddDbContext<AppDbContext>(
                 o => o
                     .UseSqlServer(connectionString)
@@ -32,7 +33,7 @@ namespace MovieStore
             app.UseExceptionHandler("/Home/Error");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

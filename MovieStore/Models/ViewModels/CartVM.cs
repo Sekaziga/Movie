@@ -9,6 +9,7 @@
 
         public List<CartMovieVM> CartMovies { get; set; }
         public decimal Total { get; set; }
+   
 
     }
 }

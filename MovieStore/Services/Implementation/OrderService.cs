@@ -61,7 +61,7 @@ namespace MovieStore.Services.Implementation
 
 
 
-            catch (Exception )
+            catch (Exception)
             {
                 return false;
             }
@@ -85,7 +85,7 @@ namespace MovieStore.Services.Implementation
 
 
 
-            catch (Exception )
+            catch (Exception)
             {
                 return false;
             }
@@ -107,18 +107,18 @@ namespace MovieStore.Services.Implementation
                     .Any(i => i == m.Id));
 
 
-
             var cartMovies = movieIdList.GroupBy(x => x)
                     .Select(g => new CartMovieVM()
                     {
-                        Movie = uniqueMovies.Where(m => m.Id == g.Key).FirstOrDefault(),
+                        Movie = uniqueMovies
+                        .Where(m => m.Id == g.Key)
+                        .FirstOrDefault(),
+
                         SubTotal = g.Count() * uniqueMovies
                     .Where(m => m.Id == g.Key)
                     .FirstOrDefault().Price
 
                     }).ToList();
-
-
 
 
 
@@ -131,14 +131,14 @@ namespace MovieStore.Services.Implementation
 
         }
 
-        public List<Movie> GetmostSoldMovies()
-        {
-            throw new NotImplementedException();
-        }
+        //public List<Movie> GetmostSoldMovies()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        List<Movie> IOrderService.GetCartVM(List<int> movieIdList)
-        {
-            throw new NotImplementedException();
-        }
+        //List<Movie> IOrderService.GetCartVM(List<int> movieIdList)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

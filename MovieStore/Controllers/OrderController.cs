@@ -3,15 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using MovieStore.Helpers;
 using MovieStore.Models;
 using MovieStore.Models.ViewModels;
+using MovieStore.Services.Abstract;
 
 namespace MovieStore.Controllers
 {
     public class OrderController : Controller
     {
-        public OrderController()
+        private readonly IOrderService _orderService;
+        public OrderController(IOrderService orderService)
         {
-
+            _orderService = orderService;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -34,11 +37,14 @@ namespace MovieStore.Controllers
         }
         public IActionResult ShoppingCart()
         {
-            var cart = new CartVM();
-            CartMovieVM newCartMovie = new CartMovieVM();
-            newCartMovie.Movie = new Movie()/* { Tittle = "First tittle" }*/;
-            newCartMovie.NoOfCopies = 2;
-            newCartMovie.SubTotal = 200;
+            var movieIdList = HttpContext.Session.Get<List<int>>("movieIdlist");
+            var queryResult = _orderService.GetCartVM(movieIdList);
+
+            //var cart = new CartVM();
+            //CartMovieVM newCartMovie = new CartMovieVM();
+            //newCartMovie.Movie = new Movie()/* { Tittle = "First tittle" }*/;
+            //newCartMovie.NoOfCopies = 2;
+            //newCartMovie.SubTotal = 200;
 
 
 
@@ -52,7 +58,7 @@ namespace MovieStore.Controllers
 
             //cart.Total = 800;
 
-            return View();
+            return View(queryResult);
         }
 
     }

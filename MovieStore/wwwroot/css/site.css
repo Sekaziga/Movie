@@ -86,8 +86,6 @@ h3 {
     font-weight: bold;
 }
 
-.showCart {
-}
 
 footer {
     background-color: #f2f2f2;
@@ -96,6 +94,7 @@ footer {
 }
 
 .showCart {
+    background-color:white;
     display: block;
 }
 

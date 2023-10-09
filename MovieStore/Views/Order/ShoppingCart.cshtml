@@ -27,9 +27,9 @@ Layout= "_Layout"
                         <div class="form-group m-5">
                             <div class="form-control">
                                 <div class="row d-flex justify-content-between align-items-center">
-                                    <div class="col-md-2 col-lg-2 col-xl-2">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                             class="img-fluid rounded-3" alt="C">
+                                    <div class="col-md-1 col-lg-1 col-xl-1">
+                                        <img src="~/images/@item.Movie.ImgURL"
+                                             class="img-fluid rounded-2" alt="Image">
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3">
                                         <h6 class="lead fw-normal mb-2" style="color:#44d9e8">@item.Movie.Title</h6>
@@ -38,26 +38,22 @@ Layout= "_Layout"
                                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                         <button class="btn btn-link px-2"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                            <i class="fas fa-minus"></i>
+                                            <i class="fa fa-minus"></i>
                                         </button>
-
-
 
                                         <input id="form1" min="0" name="quantity" value="@item.NoOfCopies" type="number"
                                                class="btn btn-outline-primary" />
 
-
-
                                         <button class="btn btn-link px-2"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                            <i class="fas fa-plus"></i>
+                                            <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
                                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                         <h5 class="mb-0" style="color:#44d9e8">SEK @item.SubTotal</h5>
                                     </div>
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                        <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                        <a href="#!" class="text-danger"><i class="fa fa-trash fa-lg"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +64,7 @@ Layout= "_Layout"
 
                     <div class="float-end form-group m-5">
                         <p class="form-control mb-0 me-5 d-flex align-items-center">
-                            <span class="small text-muted me-2">Order total:</span> <span class="lead fw-normal">$799</span>
+                            <span class="small text-muted me-2">Order total:</span> <span class="lead fw-normal">@Model.Total</span>
                         </p>
                     </div>
 
@@ -85,10 +81,10 @@ Layout= "_Layout"
 
 
 
-        <div class="d-flex justify-content-end" style="margin-right:100px">
+        @*<div class="d-flex justify-content-end" style="margin-right:100px">
             <button type="button" class="btn btn-secondary btn-lg me-3">Continue shopping</button>
             <button type="button" class="btn btn-light btn-lg me-3">Buy Now</button>
-        </div>
+        </div>*@
     </div>
 
 </section>

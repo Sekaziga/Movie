@@ -1,4 +1,5 @@
 ﻿using MovieStore.Models;
+using MovieStore.Models.ViewModels;
 using System.Collections.Generic;
 
 namespace MovieStore.Services.Abstract
@@ -7,8 +8,8 @@ namespace MovieStore.Services.Abstract
     {
         List<Order> GetOrders();
 
-        List<Movie> GetmostSoldMovies();
-        List<Movie> GetCartVM(List<int> movieIdList);
+        //List<Movie> GetmostSoldMovies();
+        CartVM GetCartVM(List<int> movieIdList);
 
 
 

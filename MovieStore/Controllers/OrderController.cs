@@ -1,3 +1,4 @@
+
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieStore.Helpers;
@@ -12,18 +13,19 @@ namespace MovieStore.Controllers
         private readonly IOrderService _orderService;
         public OrderController(IOrderService orderService)
         {
+
             _orderService = orderService;
+
         }
 
         public IActionResult Index()
         {
             return View();
         }
-
         [HttpPost]
-        public IActionResult AddTocart(string id)
-        {
-            if (HttpContext.Session.Get<List<int>>("movieIdlist") == default)
+        public IActionResult AddToCart(string id)
+        { 
+          if (HttpContext.Session.Get<List<int>>("movieIdlist")==default)
             {
                 HttpContext.Session.Set<List<int>>("movieIdlist", new List<int>());
             }

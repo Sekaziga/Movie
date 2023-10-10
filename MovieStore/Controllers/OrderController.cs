@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using MovieStore.Helpers;
 using MovieStore.Models;
 using MovieStore.Models.ViewModels;
-using MovieStore.Services.Abstract;
 
 using MovieStore.Services;
 
@@ -29,8 +28,10 @@ namespace MovieStore.Controllers
         {
             return View();
         }
+        
         [HttpPost]
         public IActionResult AddToCart(string id)
+        { 
 
             if (HttpContext.Session.Get<List<int>>("movieIdlist") == default)
 

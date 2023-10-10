@@ -3,13 +3,8 @@
 using MovieStore.Helpers;
 using MovieStore.Models;
 using MovieStore.Models.ViewModels;
-using MovieStore.Services.Abstract;
-using MovieStore.Services.Implementation;
 
-﻿using MovieStore.Models.ViewModels;
-using MovieStore.Models;
 using MovieStore.Services;
-using Microsoft.AspNetCore.Mvc;
 
 
 

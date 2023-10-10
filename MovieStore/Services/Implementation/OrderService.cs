@@ -2,7 +2,6 @@
 using MovieStore.Models;
 using MovieStore.Models.ViewModels;
 
-using MovieStore.Services.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;

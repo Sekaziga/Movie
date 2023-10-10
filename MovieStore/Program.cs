@@ -1,7 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using MovieStore.Data;
-using MovieStore.Services.Abstract;
-using MovieStore.Services.Implementation;
+using MovieStore.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace MovieStore
 {
@@ -23,6 +22,7 @@ namespace MovieStore
             builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddScoped<IMovieService, MovieService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
+
 
             var app = builder.Build();
 

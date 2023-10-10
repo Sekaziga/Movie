@@ -1,9 +1,9 @@
 ﻿using MovieStore.Models;
-using MovieStore.Services.Abstract;
+
 
 namespace MovieStore.Services
 {
-    public class TestCustomerService : ICustomerService
+    public class TestCustomerService
     {
         List<Customer> Customers { get; set; } = new List<Customer>();
         public void CreateCustomer(Customer newCustomer)

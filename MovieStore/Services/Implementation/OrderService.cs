@@ -1,33 +1,44 @@
 ﻿using MovieStore.Data;
 using MovieStore.Models;
 using MovieStore.Models.ViewModels;
+
 using MovieStore.Services.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MovieStore.Services.Implementation
+
+namespace MovieStore.Services
 {
     public class OrderService : IOrderService
     {
         private readonly AppDbContext _db;
+        private readonly IMovieService _movieService;
 
-
-
-        public OrderService(AppDbContext db)
+        public OrderService(AppDbContext db, IMovieService movieService)
         {
             _db = db;
+            _movieService = movieService;
+
         }
 
 
-
-
-
-        public List<Order> GetOrders()
+        public List<Movie> GetMostSoldMovies()
         {
-            return _db.Orders.ToList();
+            var groupMovies = _db.OrderRows.GroupBy(m => m.MovieId)
+                           .Select(x => new
+                           {
+                               movieId = x.Key,
+                               soldCopies = x.Count()
+                           })
+                           .OrderByDescending(x => x.soldCopies).Take(5).ToList();
+            var popMovies = new List<Movie>();
+            foreach (var item in groupMovies)
+            {
+                popMovies.Add(_movieService.GetMovie(item.movieId));
+            }
+            return popMovies;
         }
-
 
 
         public Order GetOrderById(int id)
@@ -41,8 +52,6 @@ namespace MovieStore.Services.Implementation
         {
             _db.Orders.Add(newOrder);
             _db.SaveChanges();
-
-
 
         }
 
@@ -98,47 +107,60 @@ namespace MovieStore.Services.Implementation
             throw new NotImplementedException();
         }
 
-
-
         public CartVM GetCartVM(List<int> movieIdList)
         {
             var uniqueMovies = _db.Movies
-                    .Where(m => movieIdList
-                    .Any(i => i == m.Id));
-
+                        .Where(m => movieIdList
+                        .Any(i => i == m.Id));
 
             var cartMovies = movieIdList.GroupBy(x => x)
-                    .Select(g => new CartMovieVM()
-                    {
-                        Movie = uniqueMovies
-                        .Where(m => m.Id == g.Key)
-                        .FirstOrDefault(),
-
-                        SubTotal = g.Count() * uniqueMovies
+                .Select(g => new CartMovieVM()
+                {
+                    Movie = uniqueMovies
+                    .Where(m => m.Id == g.Key)
+                    .FirstOrDefault(),
+                    NoOfCopies = g.Count(),
+                    SubTotal = g.Count() * uniqueMovies
                     .Where(m => m.Id == g.Key)
                     .FirstOrDefault().Price
-
-                    }).ToList();
-
-
-
+                }).ToList();
 
             CartVM cartVM = new CartVM();
             cartVM.CartMovies = cartMovies;
             cartVM.Total = cartMovies.Sum(cm => cm.SubTotal);
 
             return cartVM;
-
         }
 
-        //public List<Movie> GetmostSoldMovies()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void AddOrder(string email, List<CartMovieVM> cartMovies)
+        {
+            Order newOrder = new Order();
+            newOrder.OrderDate = DateTime.Now;
+            newOrder.Customer = _db.Customers
+                                .Where(c => c.Email == email).FirstOrDefault();
 
-        //List<Movie> IOrderService.GetCartVM(List<int> movieIdList)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            List<OrderRow> orderRows = new List<OrderRow>();
+            foreach (var item in cartMovies)
+            {
+                for (int i = 0; i < item.NoOfCopies; i++)
+                {
+                    OrderRow row = new OrderRow()
+                    {
+                        MovieId = item.Movie.Id,
+                        Price = item.Movie.Price
+                    };
+                    orderRows.Add(row);
+                }
+            }
+            newOrder.OrderRows = orderRows;
+            _db.Orders.Add(newOrder);
+            _db.SaveChanges();
+        }
+
+
+
+
+
+
     }
 }

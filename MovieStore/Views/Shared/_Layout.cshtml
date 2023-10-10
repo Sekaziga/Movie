@@ -1,15 +1,12 @@
-﻿@using MovieStore.Helpers
+﻿﻿@using MovieStore.Helpers
 @{
     var idList = Context.Session.Get<List<int>>("movieIdlist");
     var movieCount = 0;
     if (idList != null)
     {
         movieCount = idList.Count;
-       
     }
     var className = movieCount == 0 ? "notShowCart" : "showCart";
-    
-    
 }
 
 <!DOCTYPE html>
@@ -18,75 +15,56 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MovieStore</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MovieStore.styles.css" asp-append-version="true" />
-    <style>
-        .navbar {
-            background-color: gold;
-            color: red;
-           
-        }
 
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DemoMovieStoreCodeFirst.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-          <nav class="navbar navbar-expand-sm navbar-toggleable-sm @*navbar-light bg-white*@ border-bottom box-shadow mb-3">
-                <div class="container-fluid">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MovieStore</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MovieStore</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Movie" asp-action="Index">Shop Movie</a>
                         </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Movie" asp-action="Create">Add Movie</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                       
-                        </ul>
-                    <div>
-                        <div class="search-container">
-                            <form class="d-flex" asp-controller="Movie" asp-controller="Search">
-                                <input type="text" placeholder="Search...">
-                                <button type="submit">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                    @*<a href="/cart" class="navbar-cart-icon">
-                        <i class="fa fa-shopping-cart"></i>
-                    </a>*@
-                    <a asp-controller="Order" asp-action="ShoppingCart">
-                      <div id="cartDiv" class="@className border border-2 rounded p-3 m-2">
-                        <i class="fa fa-shopping-cart me-2"></i><span id="cartCount" class="badge bg-primary">@movieCount</span>
-                     
-                      </div>
-                    </a>
-                   
-
-            
-            @*<div id="cart">
-                <span id="item-count">0</span>
-                <button id="cart-button">View Cart</button>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Movie" asp-action="Create">Add Movie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Customers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Create">Add Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-                <div class="notShowCart"> 
-            <i class="fa fa-shopping-cart me-2"></i><span id="cartCount" class="badge bg-primary">@movieCount</span>
-            </div>*@
-
-
-
-          </nav>
+            <div class="container-fluid">
+                <form class="d-flex" asp-controller="Movie" asp-action="Search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+            <a asp-controller="Order" asp-action="ShoppingCart">
+                <div id="cartDiv" class="@className  border border-2 rounded p-3 me-2">
+                    <i class="fa fa-shopping-cart me-2"></i><span id="cartCount" class="badge bg-primary">@movieCount</span>
+                </div>
+            </a>
+        </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -96,7 +74,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - MovieStore Team ® Stefan + Gaston + Abdoulie ®- <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - MovieStore Team ® Stefan + Gaston + Abdoulie ®-<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

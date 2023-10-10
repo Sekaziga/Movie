@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Customer>
+
+
+@{
+    ViewData["Title"] = "Customer";
+}
+
+<h1>Customers</h1>
+
+<p>
+    <a asp-action="Create">Create new customer</a>
+</p>
+@*<table class="table">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.BillingAddress
+                </td>
+                 <td>
+                    @item.BillingZip
+                </td>
+                <td>
+                    @item.BillingCity
+                 </td>
+                <td>
+                    @item.DeliveryAddress
+                 </td>
+                 <td>
+                    @item.DeliveryZip
+                </td>
+                <td>
+                     @item.DeliveryCity
+                </td>
+                <td>
+                     @item.Email
+                </td>
+                <td>
+                    @item.PhoneNumber
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+*@
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillingAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillingZip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillingCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryZip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillingAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillingZip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillingCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryZip)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Create">New customer</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Edit" asp-route-id="@item.Id">Edit customer</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Delete">Delete customer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

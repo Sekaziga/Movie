@@ -11,7 +11,7 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="card col-md-4">
+        <div class="card col-md-2 m-1">
             <img src="~/images/@item.ImgURL" class="card-img-top" alt="...">
             <div class="card-body">
                 <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.Id">

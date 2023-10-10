@@ -1,8 +1,7 @@
 ﻿using MovieStore.Data;
 using MovieStore.Models;
-using MovieStore.Services.Abstract;
 
-namespace MovieStore.Services.Implementation
+namespace MovieStore.Services
 {
     public class MovieService : IMovieService
     {
@@ -11,20 +10,6 @@ namespace MovieStore.Services.Implementation
         public MovieService(AppDbContext db)
         {
             _db = db;
-        }
-        public List<Movie> GetTop5Movies()
-        {
-            return _db.Movies.OrderByDescending(m => m.Price).Take(5).ToList();
-        }
-
-        public List<Movie> GetTop5NewestMovies()
-        {
-            return _db.Movies.OrderByDescending(m => m.ReleaseYear).Take(5).ToList();
-        }
-
-        public List<Movie> GetTop5OldestMovies()
-        {
-            return _db.Movies.OrderBy(m => m.ReleaseYear).Take(5).ToList();
         }
 
         public List<Movie> GetMovies()
@@ -35,6 +20,11 @@ namespace MovieStore.Services.Implementation
         {
             _db.Movies.Add(movie);
             _db.SaveChanges();
+        }
+
+        public Movie GetMovie(int id)
+        {
+            return _db.Movies.Where(m => m.Id == id).FirstOrDefault();
         }
 
 

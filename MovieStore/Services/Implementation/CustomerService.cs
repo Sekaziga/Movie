@@ -1,8 +1,8 @@
 ﻿using MovieStore.Data;
 using MovieStore.Models;
-using MovieStore.Services.Abstract;
 
-namespace MovieStore.Services.Implementation
+
+namespace MovieStore.Services
 {
     public class CustomerService : ICustomerService
     {
@@ -17,6 +17,21 @@ namespace MovieStore.Services.Implementation
         {
             _db.Customers.Add(newCustomer);
             _db.SaveChanges();
+        }
+
+        public bool CheckExists(string email)
+        {
+            return _db.Customers.Any(c => c.Email == email);
+        }
+
+        public Customer GetCustomer(string email)
+        {
+            return _db.Customers.Where(c => c.Email == email).FirstOrDefault();
+        }
+
+        public List<Customer> GetCustomers()
+        {
+            return _db.Customers.ToList();
         }
 
 

@@ -1,9 +1,17 @@
+
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieStore.Helpers;
 using MovieStore.Models;
 using MovieStore.Models.ViewModels;
 using MovieStore.Services.Abstract;
 using MovieStore.Services.Implementation;
+
+﻿using MovieStore.Models.ViewModels;
+using MovieStore.Models;
+using MovieStore.Services;
+using Microsoft.AspNetCore.Mvc;
+
+
 
 namespace MovieStore.Controllers
 {
@@ -25,6 +33,11 @@ namespace MovieStore.Controllers
             return View(movieList);
         }
 
+        public IActionResult Details(int id)
+        {
+            return View(_movieService.GetMovie(id));
+        }
+
         public IActionResult Create()
         {
             return View();
@@ -35,6 +48,7 @@ namespace MovieStore.Controllers
             _movieService.CreateMovie(newMovie);
             return RedirectToAction("Index");
         }
+
 
     }
 

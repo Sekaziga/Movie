@@ -1,8 +1,8 @@
 ﻿using MovieStore.Models;
+using MovieStore.Models.ViewModels;
+using MovieStore.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using MovieStore.Models.ViewModels;
-using MovieStore.Services.Abstract;
 
 namespace MovieStore.Controllers
 {
@@ -10,37 +10,42 @@ namespace MovieStore.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IMovieService _movieService;
+        private readonly IOrderService _orderService;
 
         public HomeController(ILogger<HomeController> logger,
-              IMovieService movieService
-              )
+             IMovieService movieService,
+             IOrderService order
+             )
         {
             _logger = logger;
             _movieService = movieService;
+            _orderService = order;
         }
 
         public IActionResult Index()
         {
-            var movieList = _movieService.GetMovies();
-
+            var movies = _movieService.GetMovies();
             FrontPageVM frontPage = new FrontPageVM();
-            frontPage.Top5Movies = movieList
-                .OrderByDescending(m => m.ReleaseYear).Take(5)
+
+            frontPage.TopSellerMovies = _orderService.GetMostSoldMovies();
+
+            frontPage.CheapestMovies = movies
+                .OrderBy(m => m.Price)
+                .Take(5)
                 .ToList();
 
-            frontPage.Top5OldestMovies = movieList
-                .OrderBy(m => m.ReleaseYear).Take(5)
+            frontPage.NewestMovies = movies
+                .OrderByDescending(m => m.ReleaseYear)
+                .Take(5)
                 .ToList();
 
-            frontPage.Top5CheapestMovies = movieList
-                .OrderBy(m => m.Price).Take(5)
+            frontPage.OldestMovies = movies
+                .OrderBy(m => m.ReleaseYear)
+                .Take(5)
                 .ToList();
 
-            frontPage.Top5NewestMovies = movieList
-                .OrderByDescending(m => m.ReleaseYear).Take(5)
-                .ToList();
 
-            //frontPage.Top5CheapestMovies = movieList;
+
             return View(frontPage);
         }
 
@@ -54,20 +59,5 @@ namespace MovieStore.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public IActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(Movie newMovie)
-        {
-            _movieService.CreateMovie(newMovie);
-            return View();
-        }
-        //public IActionResult Update(Movie newMovie)
-        //{
-        //    _movieService.UpdateMovie(newMovie);
-        //    return View();
-        //}
     }
 }

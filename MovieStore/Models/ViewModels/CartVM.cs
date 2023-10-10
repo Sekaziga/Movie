@@ -1,12 +1,16 @@
 ﻿namespace MovieStore.Models.ViewModels
 {
-    //public class CartVM()
-    //{
 
-    //}
     public class CartVM
     {
-        public List <CartMovieVM> Movie { get; set; } 
+        public CartVM() 
+       {
+
+            CartMovies = new List<CartMovieVM>();
+
+        }
+
+        public List <CartMovieVM> CartMovies { get; set; } 
         public decimal Total { get; set; }
     }
     

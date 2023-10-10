@@ -4,22 +4,23 @@
 }
 
 <div class="text-center">
-    <h1 style="font-size: 30px; font-weight: bold; font-style: italic;">Welcome to Movie Store</h1>
-   @* <h1 class="display-4">Welcome to Movie Store</h1>
-*@
+    <h1 class="display-2 mb-3">Welcome to MovieStore</h1>
+
 </div>
 
- <h4 class="m-5 text-center"> BestSeller Movies 👌 </h4>
-        <partial name="_movieListPartial" model="@Model.Top5Movies"/>
+<h4 class="m-5 text-center">Our bestsellers</h4>
+<partial name="_moviesPartial" model="@Model.TopSellerMovies" />
 
-        <h4 class="m-5 text-center"> Cheapest Movies 👌 </h4>
-<partial name="_movieListPartial" model="@Model.Top5CheapestMovies" />
-        <h4 class="m-5 text-center"> New Movies 👌 </h4>
-<partial name="_movieListPartial" model="@Model.Top5NewestMovies"/>
-        <h4 class="m-5 text-center"> Oldest Movies 👌 </h4>
-<partial name="_movieListPartial" model="@Model.Top5OldestMovies" />
-<div class="centered">
-</div>
+
+<h4 class="m-5 text-center">Our cheapest movies 👌</h4>
+<partial name="_moviesPartial" model="@Model.CheapestMovies" />
+
+<h4 class="m-5 text-center">Our newest movies 🎉</h4>
+<partial name="_moviesPartial" model="@Model.NewestMovies" />
+
+<h4 class="m-5 text-center">Our oldest movies 😎</h4>
+<partial name="_moviesPartial" model="@Model.OldestMovies" />
+
 
 
 

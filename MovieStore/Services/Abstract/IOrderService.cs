@@ -1,17 +1,15 @@
 ﻿using MovieStore.Models;
+using MovieStore.Models.ViewModels;
 
-namespace MovieStore.Services.Abstract
+namespace MovieStore.Services
 {
     public interface IOrderService
     {
-        List<Order> GetOrders();
 
+        List<Movie> GetMostSoldMovies();
+        CartVM GetCartVM(List<int> movieIdList);
 
+        void AddOrder(string email, List<CartMovieVM> cartMovies);
 
-        void CreateOrder(Order newOrder);
-        bool UpdateOrder(Order newOrder);
-
-        Order GetOrderById(int id);
-        bool DeleteOrder(int id);
     }
 }

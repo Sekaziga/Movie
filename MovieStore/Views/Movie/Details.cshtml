@@ -1,0 +1,14 @@
+﻿@model Movie
+
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3 card">
+        <img src="~/images/@Model.ImgURL" class="img-fluid" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <h5 class="card-title">Director: @Model.Director</h5>
+            <p class="card-text">@Model.Description</p>
+            <h3>SEK @Model.Price</h3>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
+</div>

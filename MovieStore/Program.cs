@@ -1,7 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using MovieStore.Data;
-using MovieStore.Services.Abstract;
-using MovieStore.Services.Implementation;
+using MovieStore.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace MovieStore
 {
@@ -21,6 +20,9 @@ namespace MovieStore
                 );
             builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddScoped<IMovieService, MovieService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
+
+            builder.Services.AddResponseCaching();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -32,6 +34,7 @@ namespace MovieStore
             }
             app.UseExceptionHandler("/Home/Error");
             app.UseHttpsRedirection();
+            app.UseResponseCaching();
             app.UseStaticFiles();
             app.UseSession();
 

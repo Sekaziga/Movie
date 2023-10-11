@@ -1,54 +1,19 @@
-﻿@model MovieStore.Models.Movie
+﻿@model IEnumerable<Movie>
 
-@{
-    ViewData["Title"] = "_moviePartial";
-}
-
-<h1>_moviePartial</h1>
-
-<div>
-    <h4>Movie</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Director)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Director)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleaseYear)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReleaseYear)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImgURL)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImgURL)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="row offset-lg-1 text-center justify-content-center">
+    @foreach (var item in Model)
+    {
+        <div class="card col-md-2 m-1">
+            <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.Id">
+                <img src="~/images/@item.ImgURL" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="card-title card-text">@item.Title</div>
+                    @* <h5 class="card-title">@item.Director</h5> *@
+                    @* <p class="card-text">@item.Description</p> *@
+                    <h6>SEK @item.Price</h6>
+                </div>
+            </a>
+            <button type="button" class="btn btn-sm btn-primary m-2" onclick="Add(@item.Id)">Add to cart</button>
+        </div>
+    }
 </div>

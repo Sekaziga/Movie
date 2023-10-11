@@ -8,7 +8,7 @@
             <h5 class="card-title">Director: @Model.Director</h5>
             <p class="card-text">@Model.Description</p>
             <h3>SEK @Model.Price</h3>
-            <a href="#" class="btn btn-primary">Add to cart</a>
+            <button class="btn btn-primary md-2" onclick="Add(@Model.Id)">Add to cart</button>
         </div>
     </div>
 </div>

@@ -33,12 +33,17 @@ namespace MovieStore.Controllers
 
             _customerService.CreateCustomer(newCustomer);
 
-            //if (TempData["createorder"] is not null)
-            //{
-            //    return RedirectToAction("ConfirmOrder", "Order", new { newCustomer.Email });
-            //}
+            if (TempData["createorder"] is not null)
+            {
+                return RedirectToAction("ConfirmOrder", "Order", new { newCustomer.Email });
 
-            return RedirectToAction("Index");
+            } else
+            {
+                return RedirectToAction("Index");
+
+            }
+
+            
 
         }
 

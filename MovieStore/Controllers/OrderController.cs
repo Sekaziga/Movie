@@ -69,6 +69,9 @@ namespace MovieStore.Controllers
             confirmVM.Cart = _orderService.GetCartVM(movieIdsList);
 
             TempData["email"] = email;
+            TempData["createorder"] = null;
+
+
 
             return View(confirmVM);
         }
@@ -83,6 +86,8 @@ namespace MovieStore.Controllers
             var cart = _orderService.GetCartVM(movieIdsList);
 
             _orderService.AddOrder(email, cart.CartMovies);
+
+            HttpContext.Session.Remove("movieIdlist");
 
             return RedirectToAction("ThankYou", "Customer");
         }
